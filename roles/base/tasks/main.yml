@@ -33,19 +33,19 @@
         state: started
         daemon_reload: yes
 
-- name: enable ufw firewall but allow ssh
-  ufw:
-    rule: limit
-    port: ssh
-    proto: tcp
-    state: enabled
+# - name: enable ufw firewall but allow ssh
+#   ufw:
+#     rule: limit
+#     port: ssh
+#     proto: tcp
+#     state: enabled
 
-- name: disable system crash reports
-  lineinfile:
-    dest: /etc/default/apport
-    regexp: "^enabled=(0|1)"
-    line: enabled=0
-    state: present
+# - name: disable system crash reports
+#   lineinfile:
+#     dest: /etc/default/apport
+#     regexp: "^enabled=(0|1)"
+#     line: enabled=0
+#     state: present
 
 - name: tune system swappiness
   sysctl:
@@ -53,11 +53,11 @@
     value: '1'
     state: present
 
-- name: perform a dist upgrade
-  apt:
-    update_cache: yes
-    upgrade: dist
-    force_apt_get: yes
+# - name: perform a dist upgrade
+#   apt:
+#     update_cache: yes
+#     upgrade: dist
+#     force_apt_get: yes
 
 - name: install archiving tools
   apt:
@@ -90,39 +90,39 @@
     state: present
     force_apt_get: yes
 
-# Fix for bat syntax highlighting tool; Ubuntu packages it as batcat instead of just bat
-- name: create symlink for bat
-  file:
-    src: /usr/bin/batcat
-    dest: /usr/bin/bat
-    state: link
-    force: no
+# # Fix for bat syntax highlighting tool; Ubuntu packages it as batcat instead of just bat
+# - name: create symlink for bat
+#   file:
+#     src: /usr/bin/batcat
+#     dest: /usr/bin/bat
+#     state: link
+#     force: no
 
 - name: set nc to point to nmap's netcat implementation
   alternatives:
     name: nc
     path: /usr/bin/ncat
 
-- block:
-    - name: Create directories for golang
-      file:
-        path: "~{{ local_username }}/{{ item }}"
-        state: directory
-      with_items:
-        - go
-        - go/src
-        - go/bin
+# - block:
+#     - name: Create directories for golang
+#       file:
+#         path: "~{{ local_username }}/{{ item }}"
+#         state: directory
+#       with_items:
+#         - go
+#         - go/src
+#         - go/bin
 
-    - name: Make GOPATH available in .bashrc
-      lineinfile:
-        path: "~{{ local_username }}/.bashrc"
-        line: "{{ item }}"
-        create: yes
-      with_items:
-        - export GOPATH=$HOME/go
-        - export PATH=$PATH:$GOPATH/bin
-  become: yes
-  become_user: "{{ local_username }}"
+#     - name: Make GOPATH available in .bashrc
+#       lineinfile:
+#         path: "~{{ local_username }}/.bashrc"
+#         line: "{{ item }}"
+#         create: yes
+#       with_items:
+#         - export GOPATH=$HOME/go
+#         - export PATH=$PATH:$GOPATH/bin
+#   become: yes
+#   become_user: "{{ local_username }}"
 
 - name: install download tools
   apt:

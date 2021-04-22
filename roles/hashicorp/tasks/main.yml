@@ -4,26 +4,11 @@
   apt_key:
     url: "{{ hashicorp_apt_key }}"
 
-- name: add hashicorp repo for ubuntu 20.04 lts
+- name: add hashicorp repo
   apt_repository:
-    repo: "{{ hashicorp_repo_focal }}"
+    repo: "{{ hashicorp_repo }}"
     state: present
     filename: hashicorp
-  when: ansible_distribution_release == "focal"
-
-- name: add hashicorp repo for ubuntu 20.10
-  apt_repository:
-    repo: "{{ hashicorp_repo_groovy }}"
-    state: present
-    filename: hashicorp
-  when: ansible_distribution_release == "groovy"
-
-- name: add hashicorp repo for ubuntu 21.04
-  apt_repository:
-    repo: "{{ hashicorp_repo_hirsute }}"
-    state: present
-    filename: hashicorp
-  when: ansible_distribution_release == "hirsute"
 
 - name: install hashicorp packages
   apt:

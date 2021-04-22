@@ -1,29 +1,29 @@
 ---
 
 base_archiving_tools:
-  - arj
-  - cabextract
-  - file-roller
-  - mpack
-  - p7zip-full
-  - p7zip-rar
-  - rar
-  - sharutils
-  - unace
-  - unrar
+  # - arj
+  # - cabextract
+  # - file-roller
+  # - mpack
+  # - p7zip-full
+  # - p7zip-rar
+  # - rar
+  # - sharutils
+  # - unace
+  # - unrar
   - unzip
-  - uudeview
+  # - uudeview
   - zip
 
 base_productivity_tools:
   - libreoffice
 
 base_system_tools:
-  - fatrace
-  - gnome-calculator
-  - gnome-shell-extension-bluetooth-quick-connect  # enable in gnome-tweak-tools > Extensions
-  - gnome-shell-timer  # enable in gnome-tweak-tools > Extensions
-  - gnome-tweak-tool
+  # - fatrace
+  # - gnome-calculator
+  # - gnome-shell-extension-bluetooth-quick-connect  # enable in gnome-tweak-tools > Extensions
+  # - gnome-shell-timer  # enable in gnome-tweak-tools > Extensions
+  # - gnome-tweak-tool
   - progress
   - pwgen
   #- syncthing
@@ -37,52 +37,52 @@ base_system_tools_laptop:
 #  - tp-smapi-dkms  # for older ThinkPads
 
 base_download_tools:
-  - aria2
-  - axel
-  - transmission
-  - speedtest-cli
+  # - aria2
+  # - axel
+  # - transmission
+  # - speedtest-cli
   - wget
   - youtube-dl
 
 base_developer_tools:
-  - android-tools-adb
-  - android-tools-fastboot
+  # - android-tools-adb
+  # - android-tools-fastboot
   - ansible
   - ansible-lint
-  - awscli
-  - bat
-  - bpython
-  - black
-  - cloc
+  # - awscli
+  # - bat
+  # - bpython
+  # - black
+  # - cloc
   - clusterssh
-  - colordiff
+  # - colordiff
   - curl
-  - default-jre-headless
-  - dos2unix
-  - entr
-  - expect
+  # - default-jre-headless
+  # - dos2unix
+  # - entr
+  # - expect
   - filezilla
   - fonts-powerline
   - g++
-  - gedit-plugins
-  - geoip-bin
-  - ghostwriter
+  # - gedit-plugins
+  # - geoip-bin
+  # - ghostwriter
   - git
   - git-extras
-  - gitg
-  - golang-go
+  # - gitg
+  # - golang-go
   - htop
   - httpie
-  - inotify-tools
-  - ipython3
+  # - inotify-tools
+  # - ipython3
   - jq
-  - kwalify
-  - makeself
-  - meld
-  - miller
+  # - kwalify
+  # - makeself
+  # - meld
+  # - miller
   - most
-  - ncat
-  - netcat
+  # - ncat
+  # - netcat
   - nmap
   - nodejs
   - pandoc
@@ -104,11 +104,11 @@ base_developer_tools:
   - recode
   - remmina
   - rename
-  - ruby
-  - ruby-dev
+  # - ruby
+  # - ruby-dev
   - shellcheck
   - siege
-  - socat
+  # - socat
   - sshfs
   - sshpass
   - tilix
@@ -116,7 +116,7 @@ base_developer_tools:
   - tmux
   - tmuxp
   - tree
-  - uget
+  # - uget
   - xclip
   - yamllint
   - zeal
