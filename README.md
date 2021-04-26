@@ -8,6 +8,7 @@ The playbooks should run in Debian based system but was only tested with:
 - **Ubuntu 20.10**
 - **Ubuntu Budgie 20.10**
 - **Ubuntu 21.04**
+- **Linux Mint 20.1**
 
 For other versions of Ubuntu, change to the other branches of this git repo.
 

@@ -1,5 +1,9 @@
 ---
 
+- name: register ubuntu codename
+  shell: "sed 's/UBUNTU_CODENAME=//;t;d' /etc/os-release" 
+  register: upstream_release
+
 - name: add hashicorp apt key
   apt_key:
     url: "{{ hashicorp_apt_key }}"
