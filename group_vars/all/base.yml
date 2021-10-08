@@ -16,7 +16,7 @@ base_archiving_tools:
   - zip
 
 base_productivity_tools:
-  - libreoffice
+        #- libreoffice
 
 base_system_tools:
   # - fatrace
@@ -25,7 +25,7 @@ base_system_tools:
   # - gnome-shell-timer  # enable in gnome-tweak-tools > Extensions
   # - gnome-tweak-tool
   - progress
-  - pwgen
+    #- pwgen
   #- syncthing
 
 base_system_tools_laptop:
@@ -33,7 +33,7 @@ base_system_tools_laptop:
 #  - powertop
   - tlp
   - tlp-rdw
-  - acpi-call-dkms  # for newer ThinkPads (X220/T420 and later)
+    #- acpi-call-dkms  # for newer ThinkPads (X220/T420 and later)
 #  - tp-smapi-dkms  # for older ThinkPads
 
 base_download_tools:
@@ -42,26 +42,26 @@ base_download_tools:
   # - transmission
   # - speedtest-cli
   - wget
-  - youtube-dl
+    #- youtube-dl
 
 base_developer_tools:
   # - android-tools-adb
   # - android-tools-fastboot
   - ansible
   - ansible-lint
-  # - awscli
+  - awscli
   # - bat
   # - bpython
   # - black
   # - cloc
-  - clusterssh
+  #- clusterssh
   # - colordiff
   - curl
   # - default-jre-headless
   # - dos2unix
   # - entr
   # - expect
-  - filezilla
+  #- filezilla
   - fonts-powerline
   - g++
   # - gedit-plugins
@@ -94,7 +94,7 @@ base_developer_tools:
   - pssh
   #- puppet
   #- puppet-lint
-  - pv
+  #- pv
   - pylint
   - python3-demjson  # provides jsonlint-py3 for json lint
   - python3-jmespath
@@ -122,19 +122,19 @@ base_developer_tools:
   - zeal
 
 base_virtualization_tools:
-  - virtualbox
+        #- virtualbox
 #  - virtualbox-ext-pack
   - docker.io
   - docker-compose
 
 base_media_tools:
-  - ffmpeg
-  - gimp
-  - imagemagick
-  - libimage-exiftool-perl
-  - mediainfo
-  - soundconverter
-  - totem
+        #- ffmpeg
+    #- gimp
+    #- imagemagick
+    #- libimage-exiftool-perl
+    #- mediainfo
+    #- soundconverter
+    #- totem
 #  - ubuntu-restricted-extras
   - vlc
 

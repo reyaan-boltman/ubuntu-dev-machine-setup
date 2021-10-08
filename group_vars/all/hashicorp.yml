@@ -4,8 +4,10 @@ hashicorp_repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ upstream
 hashicorp_apt_key: "https://apt.releases.hashicorp.com/gpg"
 
 hashicorp_packages:
-  - vagrant
+        #- vagrant
   - terraform
-  - packer
-
-...
+    #- packer
+  - nomad
+  - consul
+  - valut
+  - boundary
