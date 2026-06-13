@@ -1,0 +1,13 @@
+---
+
+# Bitwarden
+bitwarden_apt_key: "https://packages.bitwarden.com/apt/bitwarden.asc"
+bitwarden_apt_repo: "https://packages.bitwarden.com/apt/"
+
+# Postman
+postman_download_url: "https://dl.pstmn.io/download/latest/linux64"
+
+# Obsidian
+obsidian_deb_url: "https://github.com/obsidianmd/obsidian-releases/releases/latest/download/obsidian_amd64.deb"
+
+...

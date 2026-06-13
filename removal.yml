@@ -174,8 +174,67 @@
         state: absent
 
     # -------------------------------------------------------------------------
+    # Apps (Bitwarden, Postman, Obsidian)
+    # -------------------------------------------------------------------------
+    - name: remove bitwarden package
+      apt:
+        name: bitwarden
+        state: absent
+        purge: yes
+        autoremove: yes
+
+    - name: remove bitwarden apt repo
+      file:
+        path: /etc/apt/sources.list.d/bitwarden.list
+        state: absent
+
+    - name: remove bitwarden apt key
+      file:
+        path: /etc/apt/keyrings/bitwarden.gpg
+        state: absent
+
+    - name: remove postman
+      file:
+        path: /opt/Postman
+        state: absent
+
+    - name: remove postman symlink
+      file:
+        path: /usr/local/bin/postman
+        state: absent
+
+    - name: remove postman desktop entry
+      file:
+        path: /usr/share/applications/postman.desktop
+        state: absent
+
+    - name: remove obsidian package
+      apt:
+        name: obsidian
+        state: absent
+        purge: yes
+        autoremove: yes
+
+    # -------------------------------------------------------------------------
     # Security and VPN
     # -------------------------------------------------------------------------
+    - name: remove tailscale package
+      apt:
+        name: tailscale
+        state: absent
+        purge: yes
+        autoremove: yes
+
+    - name: remove tailscale apt repo
+      file:
+        path: /etc/apt/sources.list.d/tailscale.list
+        state: absent
+
+    - name: remove tailscale apt key
+      file:
+        path: /etc/apt/keyrings/tailscale.gpg
+        state: absent
+
     - name: remove security and vpn packages
       apt:
         name:

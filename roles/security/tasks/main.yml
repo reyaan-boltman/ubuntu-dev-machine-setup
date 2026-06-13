@@ -12,4 +12,29 @@
     state: present
     force_apt_get: yes
 
+- name: create /etc/apt/keyrings directory
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+- name: download tailscale apt key
+  get_url:
+    url: "{{ tailscale_apt_key }}"
+    dest: /etc/apt/keyrings/tailscale.gpg
+    mode: '0644'
+
+- name: add tailscale apt repo
+  apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/tailscale.gpg] {{ tailscale_apt_repo }} noble main"
+    state: present
+    filename: tailscale
+
+- name: install tailscale
+  apt:
+    name: tailscale
+    state: present
+    update_cache: yes
+    force_apt_get: yes
+
 ...

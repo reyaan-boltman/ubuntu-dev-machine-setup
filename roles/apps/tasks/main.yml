@@ -1,0 +1,91 @@
+---
+
+- name: create /etc/apt/keyrings directory
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+# ---- Bitwarden ----
+- name: download and dearmor bitwarden apt key
+  shell: curl -fsSL "{{ bitwarden_apt_key }}" | gpg --dearmor -o /etc/apt/keyrings/bitwarden.gpg
+  args:
+    creates: /etc/apt/keyrings/bitwarden.gpg
+
+- name: set bitwarden apt key permissions
+  file:
+    path: /etc/apt/keyrings/bitwarden.gpg
+    mode: '0644'
+
+- name: add bitwarden apt repo
+  apt_repository:
+    repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/bitwarden.gpg] {{ bitwarden_apt_repo }} stable main"
+    state: present
+    filename: bitwarden
+
+- name: install bitwarden
+  apt:
+    name: bitwarden
+    state: present
+    update_cache: yes
+    force_apt_get: yes
+
+# ---- Postman ----
+- name: download postman
+  get_url:
+    url: "{{ postman_download_url }}"
+    dest: /tmp/postman.tar.gz
+    mode: '0644'
+    timeout: 60
+
+- name: extract postman to /opt
+  unarchive:
+    src: /tmp/postman.tar.gz
+    dest: /opt/
+    remote_src: yes
+    creates: /opt/Postman/Postman
+
+- name: remove postman tar archive
+  file:
+    path: /tmp/postman.tar.gz
+    state: absent
+
+- name: create postman symlink
+  file:
+    src: /opt/Postman/Postman
+    dest: /usr/local/bin/postman
+    state: link
+
+- name: create postman desktop entry
+  copy:
+    dest: /usr/share/applications/postman.desktop
+    mode: '0644'
+    content: |
+      [Desktop Entry]
+      Version=1.0
+      Type=Application
+      Name=Postman
+      Exec=/opt/Postman/Postman
+      Icon=/opt/Postman/app/icons/icon_128x128.png
+      Categories=Development;
+      Terminal=false
+      StartupWMClass=postman
+
+# ---- Obsidian ----
+- name: download obsidian deb package
+  get_url:
+    url: "{{ obsidian_deb_url }}"
+    dest: /tmp/obsidian_amd64.deb
+    mode: '0644'
+    timeout: 60
+
+- name: install obsidian
+  apt:
+    deb: /tmp/obsidian_amd64.deb
+
+- name: remove obsidian deb package
+  file:
+    path: /tmp/obsidian_amd64.deb
+    state: absent
+
+...

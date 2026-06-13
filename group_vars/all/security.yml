@@ -9,4 +9,7 @@ security_vpn_packages:
   - wireguard
   - openvpn
 
+tailscale_apt_key: "https://pkgs.tailscale.com/stable/ubuntu/noble.noarmor.gpg"
+tailscale_apt_repo: "https://pkgs.tailscale.com/stable/ubuntu"
+
 ...
