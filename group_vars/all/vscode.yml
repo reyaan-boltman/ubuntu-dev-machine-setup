@@ -20,7 +20,7 @@ vscode_extensions:
   - shardulm94.trailing-spaces
   - Equinusocio.vsc-material-theme
   - vscodevim.vim
-  - vscoss.vscode-ansible
+  - redhat.ansible
   - wayou.vscode-todo-highlight
   - visualstudioexptteam.vscodeintellicode
   - ms-azuretools.vscode-docker
