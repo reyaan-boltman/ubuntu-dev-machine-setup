@@ -47,8 +47,10 @@
     force_apt_get: yes
 
 # k9s
-- name: install k9s via snap
-  community.general.snap:
-    name: k9s
+- name: install k9s binary
+  shell: |
+    curl -fsSL https://github.com/derailed/k9s/releases/latest/download/k9s_Linux_amd64.tar.gz | tar xz -C /usr/local/bin k9s
+  args:
+    creates: /usr/local/bin/k9s
 
 ...

@@ -135,14 +135,20 @@
     state: present
     force_apt_get: yes
 
-- name: install aws-cli v2 via snap
-  community.general.snap:
-    name: aws-cli
-    classic: yes
+- name: install aws-cli v2
+  shell: |
+    curl -fsSL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o /tmp/awscliv2.zip
+    unzip -q /tmp/awscliv2.zip -d /tmp/
+    /tmp/aws/install
+    rm -rf /tmp/aws /tmp/awscliv2.zip
+  args:
+    creates: /usr/local/bin/aws
 
-- name: install yq v4 via snap
-  community.general.snap:
-    name: yq
+- name: install yq v4 binary
+  get_url:
+    url: "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64"
+    dest: /usr/local/bin/yq
+    mode: '0755'
 
 - name: install bash git prompt
   git:
