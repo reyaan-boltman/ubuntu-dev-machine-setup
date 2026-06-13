@@ -1,8 +1,16 @@
 ---
 
-- name: add googlechrome apt key
-  apt_key:
+- name: create /etc/apt/keyrings directory
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+- name: download googlechrome apt key
+  get_url:
     url: "{{ googlechrome_apt_key }}"
+    dest: /etc/apt/keyrings/googlechrome.asc
+    mode: '0644'
 
 - name: add google chrome repo
   apt_repository:

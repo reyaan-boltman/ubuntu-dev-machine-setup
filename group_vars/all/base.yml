@@ -96,7 +96,6 @@ base_developer_tools:
   #- puppet-lint
   #- pv
   - pylint
-  - python3-demjson  # provides jsonlint-py3 for json lint
   - python3-jmespath
   - python3-pep8
   - python3-pip
@@ -119,13 +118,13 @@ base_developer_tools:
   # - uget
   - xclip
   - yamllint
+  - yq
   - zeal
 
 base_virtualization_tools:
         #- virtualbox
 #  - virtualbox-ext-pack
-  - docker.io
-  - docker-compose
+  # docker is installed via the docker role (Docker CE from official repo)
 
 base_media_tools:
         #- ffmpeg

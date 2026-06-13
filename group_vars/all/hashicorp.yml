@@ -1,6 +1,6 @@
 ---
 
-hashicorp_repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ upstream_release.stdout }} main"    # ubuntu 20.04 LTS
+hashicorp_repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/hashicorp.asc] https://apt.releases.hashicorp.com {{ upstream_release.stdout }} main"    # ubuntu 24.04 LTS (Noble)
 hashicorp_apt_key: "https://apt.releases.hashicorp.com/gpg"
 
 hashicorp_packages:
@@ -9,5 +9,5 @@ hashicorp_packages:
     #- packer
   - nomad
   - consul
-  - valut
+  - vault
   - boundary

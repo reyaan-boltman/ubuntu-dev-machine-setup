@@ -4,9 +4,17 @@
   shell: "sed 's/UBUNTU_CODENAME=//;t;d' /etc/os-release" 
   register: upstream_release
 
-- name: add hashicorp apt key
-  apt_key:
+- name: create /etc/apt/keyrings directory
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+- name: download hashicorp apt key
+  get_url:
     url: "{{ hashicorp_apt_key }}"
+    dest: /etc/apt/keyrings/hashicorp.asc
+    mode: '0644'
 
 - name: add hashicorp repo
   apt_repository:

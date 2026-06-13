@@ -1,0 +1,10 @@
+---
+
+- name: setup kubernetes tools
+  hosts: localhost
+  connection: local
+  become: yes
+  roles:
+    - kubernetes
+
+...

@@ -1,0 +1,54 @@
+---
+
+- name: create /etc/apt/keyrings directory
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+# kubectl
+- name: download kubernetes apt key
+  get_url:
+    url: "{{ kubernetes_apt_key }}"
+    dest: /etc/apt/keyrings/kubernetes.asc
+    mode: '0644'
+
+- name: add kubernetes apt repo
+  apt_repository:
+    repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/kubernetes.asc] {{ kubernetes_apt_repo }} /"
+    state: present
+    filename: kubernetes
+
+- name: install kubectl
+  apt:
+    name: kubectl
+    state: present
+    update_cache: yes
+    force_apt_get: yes
+
+# helm
+- name: download helm apt key
+  get_url:
+    url: "{{ helm_apt_key }}"
+    dest: /etc/apt/keyrings/helm.asc
+    mode: '0644'
+
+- name: add helm apt repo
+  apt_repository:
+    repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/helm.asc] {{ helm_apt_repo }} all main"
+    state: present
+    filename: helm
+
+- name: install helm
+  apt:
+    name: helm
+    state: present
+    update_cache: yes
+    force_apt_get: yes
+
+# k9s
+- name: install k9s via snap
+  community.general.snap:
+    name: k9s
+
+...

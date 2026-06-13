@@ -1,6 +1,6 @@
 ---
 
-vscode_repo: "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+vscode_repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/vscode.asc] https://packages.microsoft.com/repos/vscode stable main"
 vscode_apt_key: "https://packages.microsoft.com/keys/microsoft.asc"
 
 vscode_extensions:

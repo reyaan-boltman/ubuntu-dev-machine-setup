@@ -1,8 +1,16 @@
 ---
 
-- name: add vscode apt key
-  apt_key:
+- name: create /etc/apt/keyrings directory
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+- name: download vscode apt key
+  get_url:
     url: "{{ vscode_apt_key }}"
+    dest: /etc/apt/keyrings/vscode.asc
+    mode: '0644'
 
 - name: add vscode repo
   apt_repository:

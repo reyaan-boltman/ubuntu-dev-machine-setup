@@ -1,16 +1,12 @@
-# ubuntu-dev-machine-setup | Ubuntu 20.04 LTS
+# ubuntu-dev-machine-setup | Linux Mint 22.3 / Ubuntu 24.04 LTS
 
 This repo contains Ansible playbooks to configure your system as a development machine upon a clean install.
 
 The playbooks should run in Debian based system but was only tested with:
-- **Ubuntu 20.04**
-- **Ubuntu Budgie 20.04**
-- **Ubuntu 20.10**
-- **Ubuntu Budgie 20.10**
-- **Ubuntu 21.04**
-- **Linux Mint 20.1**
+- **Linux Mint 22.3**
+- **Ubuntu 24.04 LTS (Noble)**
 
-For other versions of Ubuntu, change to the other branches of this git repo.
+For other versions of Ubuntu/Linux Mint, change to the other branches of this git repo.
 
 ![bullet-train-zsh-theme](.screenshot-bullet-train.png)
 
@@ -86,8 +82,10 @@ Summary of packages that get installed and configured:
 - Customization tools like gnome-tweak-tool, etc
 - Power management tools like [TLP](https://github.com/linrunner/TLP)
 - Download utils like aria2, wget, axel, etc
-- Developer tools like awscli, httpie, clusterssh, docker, virtualbox, ghostwriter markdown editor, etc
-- Hashicorp tools like vagrant, packer and terraform
+- Developer tools like awscli, httpie, clusterssh, yq (YAML processor), ghostwriter markdown editor, etc
+- Docker CE (with Compose v2 plugin) installed from Docker's official repository
+- Hashicorp tools like terraform, vault, consul, nomad and boundary
+- Kubernetes tools: kubectl, helm, k9s (TUI cluster manager)
 - Google Chrome
 - Visual Studio Code and some popular extensions
 - Git Bash Prompt
