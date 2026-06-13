@@ -50,6 +50,13 @@
       Terminal=false
       StartupWMClass=postman
 
+# ---- Nextcloud Desktop ----
+- name: install nextcloud desktop client
+  apt:
+    name: nextcloud-desktop
+    state: present
+    force_apt_get: yes
+
 # ---- Obsidian ----
 - name: install obsidian
   shell: |

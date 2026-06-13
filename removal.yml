@@ -198,6 +198,13 @@
         path: /usr/share/applications/postman.desktop
         state: absent
 
+    - name: remove nextcloud desktop client
+      apt:
+        name: nextcloud-desktop
+        state: absent
+        purge: yes
+        autoremove: yes
+
     - name: remove obsidian package
       apt:
         name: obsidian
