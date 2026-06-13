@@ -3,5 +3,6 @@
 laptop_mode: True              # True => this device is a laptop computer
 virtual_machine_mode: False    # False => this device os is running on bare metal
 local_username: "{{ lookup('env', 'USER') }}"          # This is the primary username used when logging in to the desktop
+ubuntu_codename: "noble"       # Ubuntu base codename for Linux Mint 22.3
 
 ...

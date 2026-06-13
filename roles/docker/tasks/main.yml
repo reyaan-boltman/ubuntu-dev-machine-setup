@@ -13,13 +13,9 @@
         dest: /etc/apt/keyrings/docker.asc
         mode: '0644'
 
-    - name: register ubuntu codename
-      shell: "sed 's/UBUNTU_CODENAME=//;t;d' /etc/os-release"
-      register: docker_upstream_release
-
     - name: add docker repo
       apt_repository:
-        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] {{ docker_repo_base_url }}/linux/ubuntu {{ docker_upstream_release.stdout }} stable"
+        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] {{ docker_repo_base_url }}/linux/ubuntu {{ ubuntu_codename }} stable"
         state: present
         filename: docker-ce
 

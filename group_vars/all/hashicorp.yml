@@ -1,6 +1,6 @@
 ---
 
-hashicorp_repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/hashicorp.asc] https://apt.releases.hashicorp.com {{ upstream_release.stdout }} main"    # ubuntu 24.04 LTS (Noble)
+hashicorp_repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/hashicorp.asc] https://apt.releases.hashicorp.com {{ ubuntu_codename }} main"    # ubuntu 24.04 LTS (Noble)
 hashicorp_apt_key: "https://apt.releases.hashicorp.com/gpg"
 
 hashicorp_packages:
