@@ -137,7 +137,7 @@
 
     - name: remove helm apt key
       file:
-        path: /etc/apt/keyrings/helm.asc
+        path: /etc/apt/keyrings/helm.gpg
         state: absent
 
     # -------------------------------------------------------------------------

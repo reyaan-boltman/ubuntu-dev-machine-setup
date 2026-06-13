@@ -27,15 +27,19 @@
     force_apt_get: yes
 
 # helm
-- name: download helm apt key
-  get_url:
-    url: "{{ helm_apt_key }}"
-    dest: /etc/apt/keyrings/helm.asc
+- name: download and dearmor helm apt key
+  shell: curl -fsSL "{{ helm_apt_key }}" | gpg --dearmor -o /etc/apt/keyrings/helm.gpg
+  args:
+    creates: /etc/apt/keyrings/helm.gpg
+
+- name: set helm apt key permissions
+  file:
+    path: /etc/apt/keyrings/helm.gpg
     mode: '0644'
 
 - name: add helm apt repo
   apt_repository:
-    repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/helm.asc] {{ helm_apt_repo }} all main"
+    repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/helm.gpg] {{ helm_apt_repo }} all main"
     state: present
     filename: helm
 
