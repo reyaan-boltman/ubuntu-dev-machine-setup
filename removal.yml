@@ -106,14 +106,17 @@
     # -------------------------------------------------------------------------
     # Kubernetes tools
     # -------------------------------------------------------------------------
-    - name: remove kubectl and helm packages
+    - name: remove kubectl package
       apt:
-        name:
-          - kubectl
-          - helm
+        name: kubectl
         state: absent
         purge: yes
         autoremove: yes
+
+    - name: remove helm binary
+      file:
+        path: /usr/local/bin/helm
+        state: absent
 
     - name: remove k9s binary
       file:
@@ -128,16 +131,6 @@
     - name: remove kubernetes apt key
       file:
         path: /etc/apt/keyrings/kubernetes.asc
-        state: absent
-
-    - name: remove helm apt repo
-      file:
-        path: /etc/apt/sources.list.d/helm.list
-        state: absent
-
-    - name: remove helm apt key
-      file:
-        path: /etc/apt/keyrings/helm.gpg
         state: absent
 
     # -------------------------------------------------------------------------

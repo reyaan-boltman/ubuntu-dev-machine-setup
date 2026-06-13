@@ -4,7 +4,6 @@ kubernetes_apt_key: "https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key"
 kubernetes_apt_repo: "https://pkgs.k8s.io/core:/stable:/v1.32/deb/"
 kubernetes_version: "v1.32"
 
-helm_apt_key: "https://baltocdn.com/helm/signing.asc"
-helm_apt_repo: "https://baltocdn.com/helm/stable/debian/"
+# helm is installed via official script: https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 
 ...
