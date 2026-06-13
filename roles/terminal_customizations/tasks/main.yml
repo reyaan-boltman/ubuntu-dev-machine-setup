@@ -5,15 +5,27 @@
       file:
         path: "~{{ local_username }}/.local/share/fonts"
         state: directory
-  become: yes
-  become_user: "{{ local_username }}"
 
-- block:
-    - name: download nerd fonts to local fonts folder
+    - name: download nerd font zip archives
       get_url:
-        url: "{{ item  }}"
-        dest: "~{{ local_username }}/.local/share/fonts/"
+        url: "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/{{ item }}.zip"
+        dest: "/tmp/nerd-font-{{ item }}.zip"
+        mode: '0644'
       with_items: "{{ terminal_customizations_nerd_fonts }}"
+
+    - name: extract nerd fonts into fonts directory
+      unarchive:
+        src: "/tmp/nerd-font-{{ item }}.zip"
+        dest: "~{{ local_username }}/.local/share/fonts/"
+        remote_src: yes
+      with_items: "{{ terminal_customizations_nerd_fonts }}"
+
+    - name: remove nerd font zip archives
+      file:
+        path: "/tmp/nerd-font-{{ item }}.zip"
+        state: absent
+      with_items: "{{ terminal_customizations_nerd_fonts }}"
+
   become: yes
   become_user: "{{ local_username }}"
 

@@ -1,16 +1,16 @@
 ---
 
-# nerd fonts from https://github.com/ryanoasis/nerd-fonts
+# Nerd Fonts family names — downloaded as zip archives from GitHub releases (v3.x+)
+# Full list: https://github.com/ryanoasis/nerd-fonts/releases/latest
 terminal_customizations_nerd_fonts:
-  - "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Retina/complete/Fira%20Code%20Retina%20Nerd%20Font%20Complete%20Mono.ttf"
-  - "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Inconsolata/complete/Inconsolata%20Regular%20Nerd%20Font%20Complete%20Mono.otf"
-  - "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete%20Mono.ttf"
-  - "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete%20Mono.ttf"
-  - "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Monoid/Retina/complete/Monoid%20Retina%20Nerd%20Font%20Complete%20Mono.ttf"
-  - "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.otf"
-  - "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete%20Mono.ttf"
-  - "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono%20Nerd%20Font%20Complete%20Mono.ttf"
-  - "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/VictorMono/Regular/complete/Victor%20Mono%20Regular%20Nerd%20Font%20Complete%20Mono.ttf"
-  - "https://github.com/adam7/delugia-code/releases/download/v2102.25/Delugia.Nerd.Font.Complete.ttf"
+  - FiraCode
+  - Inconsolata
+  - SourceCodePro
+  - UbuntuMono
+  - Monoid
+  - DroidSansMono
+  - Hack
+  - RobotoMono
+  - VictorMono
 
 ...
