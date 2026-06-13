@@ -1,0 +1,379 @@
+---
+# Removes all packages, repos, keys, binaries, and config changes made by main.yml.
+# Run as: ansible-playbook removal.yml -e "local_username=$(id -un)" -K
+
+- name: remove all dev machine setup modifications
+  hosts: localhost
+  connection: local
+  become: yes
+
+  vars:
+    local_username: "{{ lookup('env', 'USER') }}"
+
+  tasks:
+
+    # -------------------------------------------------------------------------
+    # ZSH — change shell back before removing zsh
+    # -------------------------------------------------------------------------
+    - name: revert user shell to bash
+      user:
+        name: "{{ local_username }}"
+        shell: /bin/bash
+
+    - name: remove zsh packages
+      apt:
+        name:
+          - zsh
+          - zsh-doc
+        state: absent
+        purge: yes
+        autoremove: yes
+
+    - name: remove antigen directory
+      file:
+        path: "~{{ local_username }}/.antigen"
+        state: absent
+      become_user: "{{ local_username }}"
+      become: yes
+
+    - name: restore .zshrc from backup if it exists
+      shell: |
+        if [ -f ~/.zshrc.orig ]; then
+          mv ~/.zshrc.orig ~/.zshrc
+        else
+          rm -f ~/.zshrc
+        fi
+      become_user: "{{ local_username }}"
+      become: yes
+
+    # -------------------------------------------------------------------------
+    # Docker CE
+    # -------------------------------------------------------------------------
+    - name: remove user from docker group
+      user:
+        name: "{{ local_username }}"
+        groups: docker
+        remove: yes
+      ignore_errors: yes
+
+    - name: remove docker ce packages
+      apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: absent
+        purge: yes
+        autoremove: yes
+
+    - name: remove docker apt repo
+      file:
+        path: /etc/apt/sources.list.d/docker-ce.list
+        state: absent
+
+    - name: remove docker apt key
+      file:
+        path: /etc/apt/keyrings/docker.asc
+        state: absent
+
+    # -------------------------------------------------------------------------
+    # HashiCorp
+    # -------------------------------------------------------------------------
+    - name: remove hashicorp packages
+      apt:
+        name:
+          - terraform
+          - nomad
+          - consul
+          - vault
+          - boundary
+        state: absent
+        purge: yes
+        autoremove: yes
+
+    - name: remove hashicorp apt repo
+      file:
+        path: /etc/apt/sources.list.d/hashicorp.list
+        state: absent
+
+    - name: remove hashicorp apt key
+      file:
+        path: /etc/apt/keyrings/hashicorp.asc
+        state: absent
+
+    # -------------------------------------------------------------------------
+    # Kubernetes tools
+    # -------------------------------------------------------------------------
+    - name: remove kubectl and helm packages
+      apt:
+        name:
+          - kubectl
+          - helm
+        state: absent
+        purge: yes
+        autoremove: yes
+
+    - name: remove k9s binary
+      file:
+        path: /usr/local/bin/k9s
+        state: absent
+
+    - name: remove kubernetes apt repo
+      file:
+        path: /etc/apt/sources.list.d/kubernetes.list
+        state: absent
+
+    - name: remove kubernetes apt key
+      file:
+        path: /etc/apt/keyrings/kubernetes.asc
+        state: absent
+
+    - name: remove helm apt repo
+      file:
+        path: /etc/apt/sources.list.d/helm.list
+        state: absent
+
+    - name: remove helm apt key
+      file:
+        path: /etc/apt/keyrings/helm.asc
+        state: absent
+
+    # -------------------------------------------------------------------------
+    # Google Chrome
+    # -------------------------------------------------------------------------
+    - name: remove google chrome package
+      apt:
+        name: google-chrome-stable
+        state: absent
+        purge: yes
+        autoremove: yes
+
+    - name: remove google chrome apt repo
+      file:
+        path: /etc/apt/sources.list.d/google-chrome.list
+        state: absent
+
+    - name: remove google chrome apt key
+      file:
+        path: /etc/apt/keyrings/googlechrome.asc
+        state: absent
+
+    # -------------------------------------------------------------------------
+    # Visual Studio Code
+    # -------------------------------------------------------------------------
+    - name: remove vscode package
+      apt:
+        name: code
+        state: absent
+        purge: yes
+        autoremove: yes
+
+    - name: remove vscode apt repo
+      file:
+        path: /etc/apt/sources.list.d/vscode.list
+        state: absent
+
+    - name: remove vscode apt key
+      file:
+        path: /etc/apt/keyrings/vscode.asc
+        state: absent
+
+    # -------------------------------------------------------------------------
+    # Security and VPN
+    # -------------------------------------------------------------------------
+    - name: remove security and vpn packages
+      apt:
+        name:
+          - clamav
+          - clamtk-gnome
+          - clamav-daemon
+          - wireguard
+          - openvpn
+        state: absent
+        purge: yes
+        autoremove: yes
+
+    # -------------------------------------------------------------------------
+    # Vim
+    # -------------------------------------------------------------------------
+    - name: remove vim package
+      apt:
+        name: vim
+        state: absent
+        purge: yes
+        autoremove: yes
+
+    - name: remove amix vimrc directory
+      file:
+        path: "~{{ local_username }}/.vim_runtime"
+        state: absent
+      become_user: "{{ local_username }}"
+      become: yes
+
+    - name: remove vim undo directory
+      file:
+        path: "~{{ local_username }}/.vim/undodir"
+        state: absent
+      become_user: "{{ local_username }}"
+      become: yes
+
+    # -------------------------------------------------------------------------
+    # Terminal customizations
+    # -------------------------------------------------------------------------
+    - name: remove nerd fonts
+      shell: find ~/.local/share/fonts -name "*Nerd Font*" -o -name "Delugia*" | xargs rm -f
+      args:
+        warn: no
+      become_user: "{{ local_username }}"
+      become: yes
+      ignore_errors: yes
+
+    - name: refresh font cache after font removal
+      shell: fc-cache -fv
+      become_user: "{{ local_username }}"
+      become: yes
+
+    - name: reset tilix dconf config
+      shell: dconf reset -f /com/gexperts/Tilix/
+      become_user: "{{ local_username }}"
+      become: yes
+      ignore_errors: yes
+
+    - name: restore .tmux.conf from backup if it exists
+      shell: |
+        if [ -f ~/.tmux.conf.orig ]; then
+          mv ~/.tmux.conf.orig ~/.tmux.conf
+        else
+          rm -f ~/.tmux.conf
+        fi
+      become_user: "{{ local_username }}"
+      become: yes
+
+    # -------------------------------------------------------------------------
+    # Manually installed binaries
+    # -------------------------------------------------------------------------
+    - name: uninstall aws-cli v2
+      shell: |
+        rm -f /usr/local/bin/aws /usr/local/bin/aws_completer
+        rm -rf /usr/local/aws-cli
+      args:
+        removes: /usr/local/bin/aws
+
+    - name: remove yq binary
+      file:
+        path: /usr/local/bin/yq
+        state: absent
+
+    # -------------------------------------------------------------------------
+    # Bash git prompt
+    # -------------------------------------------------------------------------
+    - name: remove bash git prompt
+      file:
+        path: "~{{ local_username }}/.bash-helpers"
+        state: absent
+      become_user: "{{ local_username }}"
+      become: yes
+
+    # -------------------------------------------------------------------------
+    # Base developer and system packages
+    # -------------------------------------------------------------------------
+    - name: remove developer tools
+      apt:
+        name:
+          - ansible
+          - ansible-lint
+          - curl
+          - direnv
+          - fonts-powerline
+          - g++
+          - git
+          - git-extras
+          - htop
+          - httpie
+          - jq
+          - most
+          - nmap
+          - nodejs
+          - pandoc
+          - parallel
+          - pipenv
+          - powerline
+          - progress
+          - pry
+          - pssh
+          - pylint
+          - python3-demjson
+          - python3-jmespath
+          - python3-pip
+          - python3-pycodestyle
+          - ranger
+          - recode
+          - remmina
+          - rename
+          - shellcheck
+          - siege
+          - sshfs
+          - sshpass
+          - tilix
+          - tldr
+          - tmux
+          - tmuxp
+          - tree
+          - unzip
+          - vlc
+          - wget
+          - xclip
+          - yamllint
+          - zeal
+          - zip
+        state: absent
+        purge: yes
+        autoremove: yes
+
+    - name: remove laptop power management packages
+      apt:
+        name:
+          - tlp
+          - tlp-rdw
+        state: absent
+        purge: yes
+        autoremove: yes
+      when: laptop_mode is defined and laptop_mode
+
+    # -------------------------------------------------------------------------
+    # System changes
+    # -------------------------------------------------------------------------
+    - name: revert vm.swappiness to system default
+      sysctl:
+        name: vm.swappiness
+        value: '60'
+        state: present
+
+    - name: disable and stop tmp.mount
+      systemd:
+        name: tmp.mount
+        enabled: no
+        state: stopped
+        daemon_reload: yes
+      ignore_errors: yes
+
+    - name: remove tmp.mount custom options
+      file:
+        path: /etc/systemd/system/tmp.mount.d
+        state: absent
+
+    # -------------------------------------------------------------------------
+    # Final apt cleanup
+    # -------------------------------------------------------------------------
+    - name: run apt autoremove to clean up orphaned packages
+      apt:
+        autoremove: yes
+        purge: yes
+
+    - name: run apt autoclean
+      apt:
+        autoclean: yes
+
+...
