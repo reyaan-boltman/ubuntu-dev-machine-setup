@@ -1,34 +1,13 @@
 ---
 
-- name: create /etc/apt/keyrings directory
-  file:
-    path: /etc/apt/keyrings
-    state: directory
-    mode: '0755'
-
 # ---- Bitwarden ----
-- name: download and dearmor bitwarden apt key
-  shell: curl -fsSL "{{ bitwarden_apt_key }}" | gpg --dearmor -o /etc/apt/keyrings/bitwarden.gpg
-  args:
-    creates: /etc/apt/keyrings/bitwarden.gpg
-
-- name: set bitwarden apt key permissions
-  file:
-    path: /etc/apt/keyrings/bitwarden.gpg
-    mode: '0644'
-
-- name: add bitwarden apt repo
-  apt_repository:
-    repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/bitwarden.gpg] {{ bitwarden_apt_repo }} stable main"
-    state: present
-    filename: bitwarden
-
 - name: install bitwarden
-  apt:
-    name: bitwarden
-    state: present
-    update_cache: yes
-    force_apt_get: yes
+  shell: |
+    curl -fsSL "{{ bitwarden_deb_url }}" -o /tmp/bitwarden.deb
+    apt-get install -y /tmp/bitwarden.deb
+    rm -f /tmp/bitwarden.deb
+  args:
+    creates: /usr/bin/bitwarden
 
 # ---- Postman ----
 - name: download postman

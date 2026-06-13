@@ -183,16 +183,6 @@
         purge: yes
         autoremove: yes
 
-    - name: remove bitwarden apt repo
-      file:
-        path: /etc/apt/sources.list.d/bitwarden.list
-        state: absent
-
-    - name: remove bitwarden apt key
-      file:
-        path: /etc/apt/keyrings/bitwarden.gpg
-        state: absent
-
     - name: remove postman
       file:
         path: /opt/Postman
