@@ -6,7 +6,5 @@ bitwarden_deb_url: "https://vault.bitwarden.com/download/?app=desktop&platform=l
 # Postman
 postman_download_url: "https://dl.pstmn.io/download/latest/linux64"
 
-# Obsidian
-obsidian_deb_url: "https://github.com/obsidianmd/obsidian-releases/releases/latest/download/obsidian_amd64.deb"
-
+# Obsidian is installed via GitHub API to resolve the versioned .deb filename
 ...

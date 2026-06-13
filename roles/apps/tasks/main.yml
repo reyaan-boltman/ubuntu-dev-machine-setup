@@ -51,20 +51,14 @@
       StartupWMClass=postman
 
 # ---- Obsidian ----
-- name: download obsidian deb package
-  get_url:
-    url: "{{ obsidian_deb_url }}"
-    dest: /tmp/obsidian_amd64.deb
-    mode: '0644'
-    timeout: 60
-
 - name: install obsidian
-  apt:
-    deb: /tmp/obsidian_amd64.deb
-
-- name: remove obsidian deb package
-  file:
-    path: /tmp/obsidian_amd64.deb
-    state: absent
+  shell: |
+    DEB_URL=$(curl -fsSL https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | \
+      jq -r '.assets[] | select(.name | endswith("amd64.deb")) | .browser_download_url')
+    curl -fsSL "$DEB_URL" -o /tmp/obsidian.deb
+    apt-get install -y /tmp/obsidian.deb
+    rm -f /tmp/obsidian.deb
+  args:
+    creates: /usr/bin/obsidian
 
 ...
