@@ -49,7 +49,7 @@ base_developer_tools:
   # - android-tools-fastboot
   - ansible
   - ansible-lint
-  - awscli
+  # awscli is installed via snap (aws-cli --classic) — v1 was removed from Noble apt
   # - bat
   # - bpython
   # - black
@@ -58,6 +58,7 @@ base_developer_tools:
   # - colordiff
   - curl
   # - default-jre-headless
+  - direnv
   # - dos2unix
   # - entr
   # - expect
@@ -96,6 +97,7 @@ base_developer_tools:
   #- puppet-lint
   #- pv
   - pylint
+  - python3-demjson  # provides jsonlint-py3 for json lint
   - python3-jmespath
   - python3-pep8
   - python3-pip

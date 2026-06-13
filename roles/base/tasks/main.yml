@@ -135,6 +135,11 @@
     state: present
     force_apt_get: yes
 
+- name: install aws-cli v2 via snap
+  community.general.snap:
+    name: aws-cli
+    classic: yes
+
 - name: install bash git prompt
   git:
     repo: "{{ base_git_bash_prompt_url }}"

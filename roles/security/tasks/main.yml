@@ -6,4 +6,10 @@
     state: present
     force_apt_get: yes
 
+- name: install vpn packages
+  apt:
+    name: "{{ security_vpn_packages }}"
+    state: present
+    force_apt_get: yes
+
 ...

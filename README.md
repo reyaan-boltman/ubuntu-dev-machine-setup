@@ -82,7 +82,7 @@ Summary of packages that get installed and configured:
 - Customization tools like gnome-tweak-tool, etc
 - Power management tools like [TLP](https://github.com/linrunner/TLP)
 - Download utils like aria2, wget, axel, etc
-- Developer tools like awscli, httpie, clusterssh, yq (YAML processor), ghostwriter markdown editor, etc
+- Developer tools like AWS CLI v2 (snap), httpie, clusterssh, yq, direnv, ghostwriter markdown editor, etc
 - Docker CE (with Compose v2 plugin) installed from Docker's official repository
 - Hashicorp tools like terraform, vault, consul, nomad and boundary
 - Kubernetes tools: kubectl, helm, k9s (TUI cluster manager)
@@ -105,6 +105,7 @@ Summary of packages that get installed and configured:
 - Sample `.tmux.conf` file with powerline status bar and mouse support! (Open Tilix terminal and run `tmux` command, or enable custom command option in Tilix)
 - `tor` and `proxychains4` for anonymous browsing. Visit [my blog post](https://fazlearefin.blogspot.com/2020/07/tunneling-traffic-over-tor-network.html) to see how to use it
 - `clamav` antivirus package to manually scan files for malicious code using the `clamscan` utility. The clamav daemon for real-time scanning is not installed for performance reasons
+- VPN tools: WireGuard and OpenVPN
 
 ## Known Issues
 
