@@ -140,6 +140,10 @@
     name: aws-cli
     classic: yes
 
+- name: install yq v4 via snap
+  community.general.snap:
+    name: yq
+
 - name: install bash git prompt
   git:
     repo: "{{ base_git_bash_prompt_url }}"

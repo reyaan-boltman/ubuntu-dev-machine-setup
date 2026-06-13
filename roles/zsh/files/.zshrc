@@ -17,7 +17,6 @@ antigen bundle httpie
 antigen bundle kubectl
 antigen bundle node
 antigen bundle npm
-antigen bundle pep8
 antigen bundle pip
 antigen bundle pipenv
 antigen bundle pylint

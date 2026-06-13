@@ -88,7 +88,6 @@ base_developer_tools:
   - nodejs
   - pandoc
   - parallel
-  - pep8
   - pipenv
   - powerline
   - pry
@@ -99,7 +98,7 @@ base_developer_tools:
   - pylint
   - python3-demjson  # provides jsonlint-py3 for json lint
   - python3-jmespath
-  - python3-pep8
+  - python3-pycodestyle
   - python3-pip
   - ranger
   - recode
@@ -120,7 +119,7 @@ base_developer_tools:
   # - uget
   - xclip
   - yamllint
-  - yq
+  # yq is installed via snap (mikefarah/yq v4) — apt version is the older Python-based kislyuk/yq
   - zeal
 
 base_virtualization_tools:
