@@ -68,4 +68,58 @@
   args:
     creates: /usr/bin/obsidian
 
+# ---- Slack ----
+- name: download slack apt key
+  get_url:
+    url: "{{ slack_apt_key }}"
+    dest: /etc/apt/keyrings/slack.asc
+    mode: '0644'
+
+- name: add slack apt repo
+  apt_repository:
+    repo: "{{ slack_apt_repo }}"
+    state: present
+    filename: slack
+
+- name: install slack
+  apt:
+    name: slack-desktop
+    state: present
+    update_cache: yes
+    force_apt_get: yes
+
+# ---- Telegram ----
+- name: install telegram
+  apt:
+    name: telegram-desktop
+    state: present
+    force_apt_get: yes
+
+# ---- OnlyOffice ----
+- name: download onlyoffice apt key
+  get_url:
+    url: "{{ onlyoffice_apt_key }}"
+    dest: /etc/apt/keyrings/onlyoffice.asc
+    mode: '0644'
+
+- name: add onlyoffice apt repo
+  apt_repository:
+    repo: "{{ onlyoffice_apt_repo }}"
+    state: present
+    filename: onlyoffice
+
+- name: install onlyoffice desktop editors
+  apt:
+    name: onlyoffice-desktopeditors
+    state: present
+    update_cache: yes
+    force_apt_get: yes
+
+# ---- Claude Code ----
+# Claude Desktop is not available for Linux (macOS/Windows only)
+- name: install claude code
+  shell: npm install -g @anthropic-ai/claude-code
+  args:
+    creates: /usr/local/bin/claude
+
 ...

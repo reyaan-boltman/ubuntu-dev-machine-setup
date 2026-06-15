@@ -7,4 +7,12 @@ bitwarden_deb_url: "https://vault.bitwarden.com/download/?app=desktop&platform=l
 postman_download_url: "https://dl.pstmn.io/download/latest/linux64"
 
 # Obsidian is installed via GitHub API to resolve the versioned .deb filename
+
+# Slack
+slack_apt_key: "https://packagecloud.io/slacktechnologies/slack/gpgkey"
+slack_apt_repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/slack.asc] https://packagecloud.io/slacktechnologies/slack/debian/ jessie main"
+
+# OnlyOffice
+onlyoffice_apt_key: "https://download.onlyoffice.com/GPG-KEY-ONLYOFFICE"
+onlyoffice_apt_repo: "deb [signed-by=/etc/apt/keyrings/onlyoffice.asc] https://download.onlyoffice.com/repo/debian squeeze main"
 ...

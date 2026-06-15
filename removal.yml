@@ -212,6 +212,58 @@
         purge: yes
         autoremove: yes
 
+    - name: remove slack package
+      apt:
+        name: slack-desktop
+        state: absent
+        purge: yes
+        autoremove: yes
+
+    - name: remove slack apt repo
+      file:
+        path: /etc/apt/sources.list.d/slack.list
+        state: absent
+
+    - name: remove slack apt key
+      file:
+        path: /etc/apt/keyrings/slack.asc
+        state: absent
+
+    - name: remove telegram package
+      apt:
+        name: telegram-desktop
+        state: absent
+        purge: yes
+        autoremove: yes
+
+    - name: remove onlyoffice package
+      apt:
+        name: onlyoffice-desktopeditors
+        state: absent
+        purge: yes
+        autoremove: yes
+
+    - name: remove onlyoffice apt repo
+      file:
+        path: /etc/apt/sources.list.d/onlyoffice.list
+        state: absent
+
+    - name: remove onlyoffice apt key
+      file:
+        path: /etc/apt/keyrings/onlyoffice.asc
+        state: absent
+
+    - name: remove claude code
+      shell: npm uninstall -g @anthropic-ai/claude-code
+      args:
+        removes: /usr/local/bin/claude
+
+    - name: reinstall libreoffice (removed during setup)
+      apt:
+        name: libreoffice
+        state: present
+        force_apt_get: yes
+
     # -------------------------------------------------------------------------
     # Security and VPN
     # -------------------------------------------------------------------------

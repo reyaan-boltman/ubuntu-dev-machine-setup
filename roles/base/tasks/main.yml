@@ -46,6 +46,17 @@
 #     line: enabled=0
 #     state: present
 
+- name: remove pre-installed libreoffice
+  apt:
+    name: "{{ item }}"
+    state: absent
+    purge: yes
+    autoremove: yes
+  loop:
+    - libreoffice
+    - libreoffice-core
+    - libreoffice-common
+
 - name: tune system swappiness
   sysctl:
     name: vm.swappiness
@@ -61,12 +72,6 @@
 - name: install archiving tools
   apt:
     name: "{{ base_archiving_tools }}"
-    state: present
-    force_apt_get: yes
-
-- name: install productivity tools
-  apt:
-    name: "{{ base_productivity_tools }}"
     state: present
     force_apt_get: yes
 
