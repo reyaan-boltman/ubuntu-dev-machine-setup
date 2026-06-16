@@ -229,12 +229,20 @@
         path: /etc/apt/keyrings/slack.asc
         state: absent
 
-    - name: remove telegram package
-      apt:
-        name: telegram-desktop
+    - name: remove telegram
+      file:
+        path: /opt/Telegram
         state: absent
-        purge: yes
-        autoremove: yes
+
+    - name: remove telegram symlink
+      file:
+        path: /usr/local/bin/telegram
+        state: absent
+
+    - name: remove telegram desktop entry
+      file:
+        path: /usr/share/applications/telegram.desktop
+        state: absent
 
     - name: remove onlyoffice package
       apt:

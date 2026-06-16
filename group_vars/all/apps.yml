@@ -8,6 +8,9 @@ postman_download_url: "https://dl.pstmn.io/download/latest/linux64"
 
 # Obsidian is installed via GitHub API to resolve the versioned .deb filename
 
+# Telegram (apt package unavailable; redirect always resolves to latest tar.xz)
+telegram_download_url: "https://telegram.org/dl/desktop/linux"
+
 # Slack
 slack_apt_key: "https://packagecloud.io/slacktechnologies/slack/gpgkey"
 slack_apt_repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/slack.asc] https://packagecloud.io/slacktechnologies/slack/debian/ jessie main"

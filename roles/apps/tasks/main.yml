@@ -89,11 +89,46 @@
     force_apt_get: yes
 
 # ---- Telegram ----
-- name: install telegram
-  apt:
-    name: telegram-desktop
-    state: present
-    force_apt_get: yes
+- name: download telegram
+  get_url:
+    url: "{{ telegram_download_url }}"
+    dest: /tmp/telegram.tar.xz
+    mode: '0644'
+    timeout: 60
+
+- name: extract telegram to /opt
+  unarchive:
+    src: /tmp/telegram.tar.xz
+    dest: /opt/
+    remote_src: yes
+    creates: /opt/Telegram/Telegram
+
+- name: remove telegram tar archive
+  file:
+    path: /tmp/telegram.tar.xz
+    state: absent
+
+- name: create telegram symlink
+  file:
+    src: /opt/Telegram/Telegram
+    dest: /usr/local/bin/telegram
+    state: link
+
+- name: create telegram desktop entry
+  copy:
+    dest: /usr/share/applications/telegram.desktop
+    mode: '0644'
+    content: |
+      [Desktop Entry]
+      Version=1.0
+      Type=Application
+      Name=Telegram
+      Exec=/opt/Telegram/Telegram -- %u
+      Icon=telegram
+      Categories=Network;InstantMessaging;
+      Terminal=false
+      StartupWMClass=TelegramDesktop
+      MimeType=x-scheme-handler/tg;
 
 # ---- OnlyOffice ----
 - name: download onlyoffice apt key
