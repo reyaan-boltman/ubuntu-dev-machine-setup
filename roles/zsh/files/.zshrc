@@ -8,7 +8,6 @@ antigen use oh-my-zsh
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
 antigen bundle colored-man-pages
 antigen bundle colorize
-antigen bundle docker
 antigen bundle encode64
 antigen bundle gem
 antigen bundle git
@@ -18,7 +17,6 @@ antigen bundle kubectl
 antigen bundle node
 antigen bundle npm
 antigen bundle pip
-antigen bundle pipenv
 antigen bundle pylint
 antigen bundle python
 antigen bundle ruby

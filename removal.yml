@@ -405,6 +405,7 @@
           - most
           - nmap
           - nodejs
+          - npm
           - pandoc
           - parallel
           - pipenv
